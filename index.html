@@ -1,0 +1,2056 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>DominoTech — O clássico. Agora conectado.</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#07111f;
+    color:white;
+}
+
+/* MENU */
+
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    height:70px;
+    background:rgba(7,17,31,.92);
+    backdrop-filter:blur(12px);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    z-index:1000;
+    border-bottom:1px solid #203149;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:bold;
+    color:#38bdf8;
+}
+
+.logo span{
+    color:white;
+}
+
+nav ul{
+    list-style:none;
+    display:flex;
+    gap:25px;
+}
+
+nav a{
+    color:#cbd5e1;
+    text-decoration:none;
+    font-size:14px;
+}
+
+nav a:hover{
+    color:#38bdf8;
+}
+
+
+/* HERO */
+
+.hero{
+    min-height:100vh;
+    padding:130px 8% 70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:50px;
+
+    background:
+    radial-gradient(circle at 80% 30%,#164e63 0%,transparent 35%),
+    linear-gradient(135deg,#07111f,#0f172a);
+}
+
+.hero-text{
+    max-width:600px;
+}
+
+.hero h1{
+    font-size:65px;
+    margin-bottom:15px;
+}
+
+.hero h1 span{
+    color:#38bdf8;
+}
+
+.hero h2{
+    color:#facc15;
+    font-size:25px;
+    margin-bottom:25px;
+}
+
+.hero p{
+    color:#cbd5e1;
+    font-size:18px;
+    line-height:1.7;
+}
+
+.botao{
+    display:inline-block;
+    margin-top:30px;
+    padding:15px 28px;
+    border-radius:10px;
+    background:#38bdf8;
+    color:#03111d;
+    text-decoration:none;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.botao:hover{
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(56,189,248,.3);
+}
+
+
+/* DOMINÓ VISUAL */
+
+.jogo-preview{
+    width:350px;
+    height:430px;
+
+    background:
+    radial-gradient(circle,#12633f,#073522);
+
+    border:12px solid #583b25;
+    border-radius:30px;
+
+    padding:35px;
+
+    box-shadow:
+    0 30px 70px rgba(0,0,0,.5),
+    inset 0 0 40px rgba(0,0,0,.4);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.peca{
+    width:58px;
+    height:105px;
+
+    background:#f8fafc;
+    color:#111827;
+
+    border-radius:9px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
+    align-items:center;
+
+    box-shadow:0 7px 12px rgba(0,0,0,.4);
+
+    transition:.3s;
+}
+
+.peca:hover{
+    transform:translateY(-12px) rotate(3deg);
+}
+
+.linha{
+    width:40px;
+    border-top:2px solid #777;
+}
+
+
+/* POTINHOS */
+
+.lado{
+    width:100%;
+    height:45%;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:repeat(3,1fr);
+}
+
+.ponto{
+    width:8px;
+    height:8px;
+
+    background:#111827;
+
+    border-radius:50%;
+
+    justify-self:center;
+    align-self:center;
+}
+
+
+/* SEÇÕES */
+
+section{
+    padding:90px 8%;
+}
+
+.titulo{
+    text-align:center;
+    font-size:38px;
+    margin-bottom:50px;
+}
+
+.titulo span{
+    color:#38bdf8;
+}
+
+
+/* APRESENTAÇÃO */
+
+.sobre{
+    background:#0b1728;
+}
+
+.texto{
+    max-width:850px;
+    margin:auto;
+    text-align:center;
+
+    color:#cbd5e1;
+    font-size:18px;
+    line-height:1.8;
+}
+
+
+/* CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:#111f33;
+    border:1px solid #24364e;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-7px);
+    border-color:#38bdf8;
+}
+
+.icone{
+    font-size:40px;
+    margin-bottom:15px;
+}
+
+.card h3{
+    color:#38bdf8;
+    margin-bottom:12px;
+}
+
+.card p{
+    color:#aebdce;
+    line-height:1.6;
+}
+
+
+/* PRODUTO */
+
+.produto{
+    background:
+    linear-gradient(135deg,#07111f,#10253c);
+}
+
+.app{
+    max-width:1000px;
+
+    margin:auto;
+
+    background:#07111f;
+
+    border:1px solid #29415c;
+
+    border-radius:25px;
+
+    padding:25px;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.4);
+}
+
+.app-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:25px;
+}
+
+.status{
+    background:#123c2d;
+
+    color:#4ade80;
+
+    padding:8px 13px;
+
+    border-radius:20px;
+
+    font-size:13px;
+}
+
+.app-grid{
+    display:grid;
+
+    grid-template-columns:200px 1fr;
+
+    gap:20px;
+}
+
+
+/* MENU DO APLICATIVO */
+
+.sidebar{
+    background:#0d1a2b;
+
+    border-radius:15px;
+
+    padding:20px;
+}
+
+.sidebar div{
+    padding:13px;
+
+    color:#9fb0c4;
+
+    border-radius:8px;
+
+    margin-bottom:8px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.sidebar div:hover{
+    background:#16304a;
+    color:white;
+}
+
+
+/* TABULEIRO */
+
+.tabuleiro{
+    min-height:330px;
+
+    background:
+    radial-gradient(circle,#12633f,#073522);
+
+    border:8px solid #523820;
+
+    border-radius:20px;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:8px;
+
+    flex-wrap:wrap;
+}
+
+
+/* DIFERENCIAL */
+
+.diferencial{
+    background:#0a1524;
+}
+
+.destaque{
+    border:1px solid #facc15;
+
+    background:
+    linear-gradient(135deg,#172235,#17200e);
+}
+
+.destaque h3{
+    color:#facc15;
+}
+
+
+/* FINANCEIRO */
+
+.financeiro{
+    background:#0d1726;
+}
+
+.preco{
+    text-align:center;
+
+    font-size:40px;
+
+    color:#4ade80;
+
+    margin:15px 0;
+}
+
+.preco small{
+    font-size:16px;
+    color:#94a3b8;
+}
+
+
+/* EQUIPE */
+
+.equipe{
+    background:#07111f;
+}
+
+.pessoa{
+    text-align:center;
+}
+
+.avatar{
+    width:80px;
+    height:80px;
+
+    margin:0 auto 15px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:35px;
+
+    background:
+    linear-gradient(135deg,#0ea5e9,#2563eb);
+}
+
+
+/* MODAIS */
+
+.modal{
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.75);
+
+    backdrop-filter:blur(5px);
+
+    justify-content:center;
+    align-items:center;
+
+    z-index:3000;
+}
+
+.modal-box{
+    width:90%;
+
+    max-width:430px;
+
+    background:#0d1a2b;
+
+    border:1px solid #29415c;
+
+    border-radius:20px;
+
+    padding:30px;
+
+    position:relative;
+
+    box-shadow:
+    0 20px 60px rgba(0,0,0,.6);
+}
+
+.modal-box h2{
+    color:#38bdf8;
+
+    margin-bottom:10px;
+}
+
+.modal-box p{
+    color:#aebdce;
+
+    margin-bottom:20px;
+
+    line-height:1.5;
+}
+
+.fechar{
+    position:absolute;
+
+    right:15px;
+    top:10px;
+
+    border:none;
+
+    background:none;
+
+    color:#94a3b8;
+
+    font-size:30px;
+
+    cursor:pointer;
+}
+
+.fechar:hover{
+    color:white;
+}
+
+
+/* INPUT */
+
+.modal-box input{
+    width:100%;
+
+    padding:14px;
+
+    border-radius:10px;
+
+    border:1px solid #29415c;
+
+    background:#07111f;
+
+    color:white;
+
+    outline:none;
+
+    margin-bottom:15px;
+}
+
+.modal-box input:focus{
+    border-color:#38bdf8;
+}
+
+
+/* BOTÃO */
+
+.modal-botao{
+    width:100%;
+
+    padding:14px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#38bdf8;
+
+    color:#03111d;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.modal-botao:hover{
+    transform:translateY(-2px);
+}
+
+
+/* OPÇÕES DE JOGO */
+
+.opcao-jogo{
+    width:100%;
+
+    padding:15px;
+
+    margin-top:10px;
+
+    border:1px solid #29415c;
+
+    border-radius:10px;
+
+    background:#111f33;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    text-align:left;
+
+    transition:.3s;
+}
+
+.opcao-jogo:hover{
+    background:#16304a;
+
+    border-color:#38bdf8;
+
+    transform:translateY(-2px);
+}
+
+
+/* MENSAGEM */
+
+.mensagem{
+    margin-top:15px;
+
+    color:#4ade80 !important;
+
+    text-align:center;
+}
+
+
+/* RANKING */
+
+.ranking-box{
+    max-width:500px;
+}
+
+.ranking-item{
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px;
+
+    margin-top:10px;
+
+    background:#111f33;
+
+    border:1px solid #24364e;
+
+    border-radius:12px;
+
+    transition:.3s;
+}
+
+.ranking-item:hover{
+    border-color:#38bdf8;
+
+    transform:translateX(4px);
+}
+
+.ranking-item > span{
+    width:35px;
+
+    font-size:20px;
+
+    font-weight:bold;
+}
+
+.ranking-item div{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+}
+
+.ranking-item strong{
+    color:white;
+}
+
+.ranking-item small{
+    color:#94a3b8;
+}
+
+.destaque-ranking{
+    border-color:#facc15;
+
+    background:
+    linear-gradient(135deg,#172235,#17200e);
+}
+
+
+/* RODAPÉ */
+
+footer{
+    text-align:center;
+
+    padding:40px;
+
+    background:#030914;
+
+    color:#64748b;
+}
+
+footer strong{
+    color:#38bdf8;
+}
+
+
+/* RESPONSIVO */
+
+@media(max-width:800px){
+
+    nav ul{
+        display:none;
+    }
+
+    .hero{
+        flex-direction:column;
+
+        text-align:center;
+    }
+
+    .hero h1{
+        font-size:45px;
+    }
+
+    .jogo-preview{
+        width:300px;
+        height:350px;
+    }
+
+    .app-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- MENU -->
+
+<nav>
+
+    <div class="logo">
+        Domino<span>Tech</span>
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="#empresa">
+                Empresa
+            </a>
+        </li>
+
+        <li>
+            <a href="#produto">
+                Produto
+            </a>
+        </li>
+
+        <li>
+            <a href="#diferencial">
+                Diferencial
+            </a>
+        </li>
+
+        <li>
+            <a href="#equipe">
+                Equipe
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-text">
+
+        <h1>
+            Domino<span>Tech</span>
+        </h1>
+
+        <h2>
+            O clássico. Agora conectado.
+        </h2>
+
+        <p>
+            Uma nova experiência digital para quem ama dominó,
+            estratégia e competição.
+        </p>
+
+        <a class="botao" href="#produto">
+            CONHECER A PLATAFORMA
+        </a>
+
+    </div>
+
+
+    <div class="jogo-preview">
+
+
+        <!-- PEÇA 1 -->
+
+        <div class="peca">
+
+            <div class="lado">
+
+                <span class="ponto"
+                    style="grid-column:1;grid-row:1;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:3;grid-row:1;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:2;grid-row:2;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:1;grid-row:3;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:3;grid-row:3;">
+                </span>
+
+            </div>
+
+
+            <div class="linha"></div>
+
+
+            <div class="lado">
+
+                <span class="ponto"
+                    style="grid-column:1;grid-row:1;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:3;grid-row:1;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:2;grid-row:2;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:1;grid-row:3;">
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- PEÇA 2 -->
+
+        <div class="peca">
+
+            <div class="lado">
+
+                <span class="ponto"
+                    style="grid-column:1;grid-row:1;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:3;grid-row:3;">
+                </span>
+
+            </div>
+
+            <div class="linha"></div>
+
+            <div class="lado">
+
+                <span class="ponto"
+                    style="grid-column:2;grid-row:1;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:2;grid-row:2;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:2;grid-row:3;">
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- PEÇA 3 -->
+
+        <div class="peca">
+
+            <div class="lado">
+
+                <span class="ponto"
+                    style="grid-column:1;grid-row:1;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:3;grid-row:3;">
+                </span>
+
+            </div>
+
+            <div class="linha"></div>
+
+            <div class="lado">
+
+                <span class="ponto"
+                    style="grid-column:1;grid-row:1;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:3;grid-row:1;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:1;grid-row:3;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:3;grid-row:3;">
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- PEÇA 4 -->
+
+        <div class="peca">
+
+            <div class="lado">
+
+                <span class="ponto"
+                    style="grid-column:1;grid-row:1;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:3;grid-row:1;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:1;grid-row:3;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:3;grid-row:3;">
+                </span>
+
+            </div>
+
+            <div class="linha"></div>
+
+            <div class="lado">
+
+                <span class="ponto"
+                    style="grid-column:2;grid-row:1;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:2;grid-row:2;">
+                </span>
+
+                <span class="ponto"
+                    style="grid-column:2;grid-row:3;">
+                </span>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- EMPRESA -->
+
+<section class="sobre" id="empresa">
+
+    <h2 class="titulo">
+        Nossa <span>Empresa</span>
+    </h2>
+
+    <div class="texto">
+
+        <p>
+            A <strong>DominoTech</strong> é uma empresa de tecnologia
+            que tem como objetivo transformar o tradicional jogo de
+            dominó em uma experiência digital e conectada.
+        </p>
+
+        <br>
+
+        <p>
+            Nossa proposta é unir o clássico jogo de estratégia
+            com tecnologia, conectividade e novas formas de interação.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- PUBLICO -->
+
+<section>
+
+    <h2 class="titulo">
+        Público <span>Alvo</span>
+    </h2>
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="icone">
+                👨‍👩‍👧‍👦
+            </div>
+
+            <h3>
+                Famílias
+            </h3>
+
+            <p>
+                Uma maneira divertida de reunir amigos e familiares
+                em partidas online.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icone">
+                🎮
+            </div>
+
+            <h3>
+                Jovens
+            </h3>
+
+            <p>
+                Uma plataforma moderna para quem gosta de jogos
+                digitais e competição.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icone">
+                🧠
+            </div>
+
+            <h3>
+                Estrategistas
+            </h3>
+
+            <p>
+                Para quem gosta de pensar, planejar e desenvolver
+                estratégias.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icone">
+                🌎
+            </div>
+
+            <h3>
+                Jogadores Online
+            </h3>
+
+            <p>
+                Conecte-se com pessoas e participe de partidas
+                pela internet.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- PRODUTO -->
+
+<section class="produto" id="produto">
+
+    <h2 class="titulo">
+        Nosso <span>Produto</span>
+    </h2>
+
+
+    <div class="app">
+
+
+        <div class="app-top">
+
+            <h2>
+                🎲 DominoTech Play
+            </h2>
+
+            <div class="status">
+                ● ONLINE
+            </div>
+
+        </div>
+
+
+        <div class="app-grid">
+
+
+            <!-- SIDEBAR -->
+
+            <div class="sidebar">
+
+                <div>
+                    🏠 Início
+                </div>
+
+                <div onclick="abrirJogo()">
+                    🎮 Jogar
+                </div>
+
+                <div onclick="abrirAmigos()">
+                    👥 Amigos
+                </div>
+
+                <div onclick="abrirRanking()">
+                    🏆 Ranking
+                </div>
+
+            </div>
+
+
+
+            <!-- TABULEIRO -->
+
+            <div class="tabuleiro">
+
+
+                <!-- PEÇA -->
+
+                <div class="peca">
+
+                    <div class="lado">
+
+                        <span class="ponto"
+                            style="grid-column:1;grid-row:1;">
+                        </span>
+
+                        <span class="ponto"
+                            style="grid-column:3;grid-row:3;">
+                        </span>
+
+                    </div>
+
+                    <div class="linha"></div>
+
+                    <div class="lado">
+
+                        <span class="ponto"
+                            style="grid-column:1;grid-row:1;">
+                        </span>
+
+                        <span class="ponto"
+                            style="grid-column:3;grid-row:1;">
+                        </span>
+
+                        <span class="ponto"
+                            style="grid-column:1;grid-row:3;">
+                        </span>
+
+                        <span class="ponto"
+                            style="grid-column:3;grid-row:3;">
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PEÇA -->
+
+                <div class="peca">
+
+                    <div class="lado">
+
+                        <span class="ponto"
+                            style="grid-column:1;grid-row:1;">
+                        </span>
+
+                        <span class="ponto"
+                            style="grid-column:3;grid-row:3;">
+                        </span>
+
+                    </div>
+
+                    <div class="linha"></div>
+
+                    <div class="lado">
+
+                        <span class="ponto"
+                            style="grid-column:2;grid-row:1;">
+                        </span>
+
+                        <span class="ponto"
+                            style="grid-column:2;grid-row:2;">
+                        </span>
+
+                        <span class="ponto"
+                            style="grid-column:2;grid-row:3;">
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PEÇA -->
+
+                <div class="peca">
+
+                    <div class="lado">
+
+                        <span class="ponto"
+                            style="grid-column:1;grid-row:1;">
+                        </span>
+
+                        <span class="ponto"
+                            style="grid-column:3;grid-row:1;">
+                        </span>
+
+                        <span class="ponto"
+                            style="grid-column:1;grid-row:3;">
+                        </span>
+
+                        <span class="ponto"
+                            style="grid-column:3;grid-row:3;">
+                        </span>
+
+                    </div>
+
+                    <div class="linha"></div>
+
+                    <div class="lado">
+
+                        <span class="ponto"
+                            style="grid-column:2;grid-row:1;">
+                        </span>
+
+                        <span class="ponto"
+                            style="grid-column:2;grid-row:2;">
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- RECURSOS -->
+
+<section>
+
+    <h2 class="titulo">
+        Recursos da <span>Plataforma</span>
+    </h2>
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="icone">
+                👤
+            </div>
+
+            <h3>
+                Perfil
+            </h3>
+
+            <p>
+                Crie seu perfil e acompanhe sua evolução.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icone">
+                🎨
+            </div>
+
+            <h3>
+                Personalização
+            </h3>
+
+            <p>
+                Personalize sua experiência dentro da plataforma.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icone">
+                🌐
+            </div>
+
+            <h3>
+                Jogo Online
+            </h3>
+
+            <p>
+                Jogue com pessoas de diferentes lugares.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icone">
+                🤖
+            </div>
+
+            <h3>
+                Inteligência Artificial
+            </h3>
+
+            <p>
+                Jogue partidas contra o Bot quando não encontrar
+                outro jogador.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- DIFERENCIAL -->
+
+<section class="diferencial" id="diferencial">
+
+    <h2 class="titulo">
+        Nosso <span>Diferencial</span>
+    </h2>
+
+    <div class="cards">
+
+
+        <div class="card destaque">
+
+            <div class="icone">
+                🔒
+            </div>
+
+            <h3>
+                Salas Privadas
+            </h3>
+
+            <p>
+                Crie uma sala exclusiva e convide seus amigos
+                para jogar.
+            </p>
+
+        </div>
+
+
+        <div class="card destaque">
+
+            <div class="icone">
+                🎯
+            </div>
+
+            <h3>
+                Desafios
+            </h3>
+
+            <p>
+                Participe de desafios especiais durante as partidas.
+            </p>
+
+        </div>
+
+
+        <div class="card destaque">
+
+            <div class="icone">
+                🏆
+            </div>
+
+            <h3>
+                Ranking
+            </h3>
+
+            <p>
+                Compare seus resultados e acompanhe sua evolução.
+            </p>
+
+        </div>
+
+
+        <div class="card destaque">
+
+            <div class="icone">
+                🎮
+            </div>
+
+            <h3>
+                Modos de Jogo
+            </h3>
+
+            <p>
+                Diferentes modos para deixar cada partida mais divertida.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- FINANCEIRO -->
+
+<section class="financeiro">
+
+    <h2 class="titulo">
+        Modelo <span>Financeiro</span>
+    </h2>
+
+    <div class="cards">
+
+
+        <div class="card">
+
+            <div class="icone">
+                🆓
+            </div>
+
+            <h3>
+                Plano Gratuito
+            </h3>
+
+            <div class="preco">
+                R$ 0
+                <small>/mês</small>
+            </div>
+
+            <p>
+                Recursos básicos disponíveis para todos os jogadores.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="icone">
+                ⭐
+            </div>
+
+            <h3>
+                Recursos Adicionais
+            </h3>
+
+            <div class="preco">
+                Premium
+            </div>
+
+            <p>
+                Recursos adicionais dentro da plataforma podem gerar receita.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- EQUIPE -->
+
+<section class="equipe" id="equipe">
+
+    <h2 class="titulo">
+        Nossa <span>Equipe</span>
+    </h2>
+
+
+    <div class="cards">
+
+
+        <div class="card pessoa">
+
+            <div class="avatar">
+                👔
+            </div>
+
+            <h3>
+                Edite Karolyne
+            </h3>
+
+            <p>
+                Recursos Humanos<br>
+                Organização da equipe
+            </p>
+
+        </div>
+
+
+        <div class="card pessoa">
+
+            <div class="avatar">
+                🤝
+            </div>
+
+            <h3>
+                Kauan
+            </h3>
+
+            <p>
+                Setor Comercial<br>
+                Atendimento aos usuários
+            </p>
+
+        </div>
+
+
+        <div class="card pessoa">
+
+            <div class="avatar">
+                💻
+            </div>
+
+            <h3>
+                Wirlem
+            </h3>
+
+            <p>
+                Tecnologia<br>
+                Desenvolvimento e segurança
+            </p>
+
+        </div>
+
+
+        <div class="card pessoa">
+
+            <div class="avatar">
+                📢
+            </div>
+
+            <h3>
+                Maria Eduarda
+            </h3>
+
+            <p>
+                Público-alvo<br>
+                Marketing e divulgação
+            </p>
+
+        </div>
+
+
+        <div class="card pessoa">
+
+            <div class="avatar">
+                🎮
+            </div>
+
+            <h3>
+                Gustavo
+            </h3>
+
+            <p>
+                Produto<br>
+                Interface e experiência
+            </p>
+
+        </div>
+
+
+        <div class="card pessoa">
+
+            <div class="avatar">
+                🎯
+            </div>
+
+            <h3>
+                Manoel
+            </h3>
+
+            <p>
+                Inovação<br>
+                Modos e salas de jogo
+            </p>
+
+        </div>
+
+
+        <div class="card pessoa">
+
+            <div class="avatar">
+                💰
+            </div>
+
+            <h3>
+                Luiz
+            </h3>
+
+            <p>
+                Financeiro<br>
+                Modelo de negócio
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- MODAL JOGAR -->
+
+<div class="modal" id="modalJogar">
+
+    <div class="modal-box">
+
+        <button
+            class="fechar"
+            onclick="fecharModal('modalJogar')">
+            ×
+        </button>
+
+        <h2>
+            🎮 Jogar
+        </h2>
+
+        <p>
+            Escolha como você quer jogar.
+        </p>
+
+
+        <button
+            class="opcao-jogo"
+            onclick="jogarBot()">
+
+            🤖 Jogar contra o Bot
+
+        </button>
+
+
+        <button
+            class="opcao-jogo"
+            onclick="jogarAmigo()">
+
+            👥 Jogar com amigo
+
+        </button>
+
+
+        <p
+            id="mensagemJogo"
+            class="mensagem">
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<!-- MODAL AMIGOS -->
+
+<div class="modal" id="modalAmigos">
+
+    <div class="modal-box">
+
+        <button
+            class="fechar"
+            onclick="fecharModal('modalAmigos')">
+
+            ×
+
+        </button>
+
+
+        <h2>
+            👥 Adicionar amigo
+        </h2>
+
+
+        <p>
+            Digite o ID do jogador que você deseja adicionar.
+        </p>
+
+
+        <input
+            type="text"
+            id="idAmigo"
+            placeholder="Ex: DT-45821"
+        >
+
+
+        <button
+            class="modal-botao"
+            onclick="adicionarAmigo()">
+
+            ADICIONAR AMIGO
+
+        </button>
+
+
+        <p
+            id="mensagemAmigo"
+            class="mensagem">
+        </p>
+
+    </div>
+
+</div>
+
+
+
+<!-- MODAL RANKING -->
+
+<div class="modal" id="modalRanking">
+
+    <div class="modal-box ranking-box">
+
+        <button
+            class="fechar"
+            onclick="fecharModal('modalRanking')">
+
+            ×
+
+        </button>
+
+
+        <h2>
+            🏆 Ranking Top Brasil
+        </h2>
+
+
+        <p>
+            Jogadores com maior pontuação no DominoTech.
+        </p>
+
+
+        <div class="ranking-item destaque-ranking">
+
+            <span>
+                🥇
+            </span>
+
+            <div>
+
+                <strong>
+                    JoãoDomino
+                </strong>
+
+                <small>
+                    12.850 pontos
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="ranking-item">
+
+            <span>
+                🥈
+            </span>
+
+            <div>
+
+                <strong>
+                    MasterDomino
+                </strong>
+
+                <small>
+                    11.920 pontos
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="ranking-item">
+
+            <span>
+                🥉
+            </span>
+
+            <div>
+
+                <strong>
+                    DominoBR
+                </strong>
+
+                <small>
+                    11.450 pontos
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="ranking-item">
+
+            <span>
+                4º
+            </span>
+
+            <div>
+
+                <strong>
+                    ReiDoDomino
+                </strong>
+
+                <small>
+                    10.980 pontos
+                </small>
+
+            </div>
+
+        </div>
+
+
+        <div class="ranking-item">
+
+            <span>
+                5º
+            </span>
+
+            <div>
+
+                <strong>
+                    DominoPlayer
+                </strong>
+
+                <small>
+                    10.640 pontos
+                </small>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- RODAPÉ -->
+
+<footer>
+
+    <strong>
+        DOMINOTECH
+    </strong>
+
+    <br><br>
+
+    O clássico. Agora conectado.
+
+    <br><br>
+
+    © 2026 DominoTech
+
+</footer>
+
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+
+/* ABRIR AMIGOS */
+
+function abrirAmigos(){
+
+    document.getElementById("modalAmigos").style.display = "flex";
+
+}
+
+
+/* ABRIR JOGO */
+
+function abrirJogo(){
+
+    document.getElementById("modalJogar").style.display = "flex";
+
+}
+
+
+/* ABRIR RANKING */
+
+function abrirRanking(){
+
+    document.getElementById("modalRanking").style.display = "flex";
+
+}
+
+
+/* FECHAR MODAL */
+
+function fecharModal(id){
+
+    document.getElementById(id).style.display = "none";
+
+}
+
+
+/* ADICIONAR AMIGO */
+
+function adicionarAmigo(){
+
+    const id =
+        document.getElementById("idAmigo").value.trim();
+
+    const mensagem =
+        document.getElementById("mensagemAmigo");
+
+
+    if(id === ""){
+
+        mensagem.style.color = "#f87171";
+
+        mensagem.innerText =
+            "Digite o ID do jogador.";
+
+        return;
+
+    }
+
+
+    mensagem.style.color = "#4ade80";
+
+    mensagem.innerText =
+        "✓ Solicitação enviada para o jogador " + id + "!";
+
+}
+
+
+/* JOGAR CONTRA BOT */
+
+function jogarBot(){
+
+    const mensagem =
+        document.getElementById("mensagemJogo");
+
+
+    mensagem.innerText =
+        "🤖 Procurando um Bot para iniciar a partida...";
+
+
+    setTimeout(function(){
+
+        mensagem.innerText =
+            "🎮 Partida encontrada! O Bot está pronto para jogar.";
+
+    },1000);
+
+}
+
+
+/* JOGAR COM AMIGO */
+
+function jogarAmigo(){
+
+    fecharModal("modalJogar");
+
+    abrirAmigos();
+
+}
+
+
+/* FECHAR CLICANDO FORA */
+
+window.addEventListener("click", function(event){
+
+    if(event.target.classList.contains("modal")){
+
+        event.target.style.display = "none";
+
+    }
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
